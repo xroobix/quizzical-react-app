@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap');
+
+:root {
+  font-family: Karla, Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  /* color-scheme: light dark; */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
