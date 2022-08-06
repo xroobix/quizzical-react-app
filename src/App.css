@@ -6,6 +6,12 @@ body {
     margin: 0;
 }
 
+button {
+    font-family: 'Karla', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 .App {
     display: flex;
     align-items: center;
@@ -27,7 +33,6 @@ body {
 
 .menu--select {
     display: flex;
-    font-family: 'Karla', sans-serif;
     font-size: 16px;
     padding: 0.25em 0.5em;
     border-radius: 10px;
@@ -35,12 +40,48 @@ body {
 }
 
 .menu--button {
-    font-family: 'Karla', sans-serif;
-    font-weight: 500;
     font-size: 16px;
     color: white;
     background: #4D5B9E;
     border-radius: 15px;
     padding: 1em 4em;
     border: none;
+}
+
+.quiz {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 1em;
+}
+
+.quiz--button {
+    margin-inline: auto;
+    margin-top: 2em;
+    padding: 1em 3em;
+    font-size: 16px;
+    color: white;
+    background: #4D5B9E;
+    border-radius: 15px;
+    padding: 1.25em 3em;
+    border: none;
+
+}
+
+.question {
+    padding-top: 1em;
+    border-bottom: 1px solid #DBDEF0;
+}
+
+.question--title{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.question--button {
+    border: 1px solid #4D5B9E;
+    border-radius: 10px;
+    background: white;
+    padding: 4px 12px;
+    margin-right: 1.25em;
+    margin-bottom: 1.25em;
 }
