@@ -85,3 +85,9 @@ button {
     margin-right: 1.25em;
     margin-bottom: 1.25em;
 }
+
+.button-selected {
+    border: none;
+    background: #D6DBF5;
+    padding: 5px 13px;
+}

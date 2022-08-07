@@ -1,34 +1,26 @@
-import { useState } from 'react'
-import Quiz from './components/Quiz'
-import Menu from './components/Menu'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import Menu from './components/Menu';
+import Quiz from './components/Quiz';
 
 function App() {
+  const [questionsData, setQuestionsData] = useState([]);
+  const [startGame, setStartGame] = useState(true);
 
-  const [questionsData, setQuestionsData] = useState([])
-  const [startGame, setStartGame] = useState(true)
-
-
-  function getQuestionsData(data){
-    setQuestionsData(data)
-    setStartGame(false)
+  function getQuestionsData(data) {
+    setQuestionsData(data);
+    setStartGame(false);
   }
-  
 
   return (
     <div className="App">
-      {
-        startGame ?
-        <Menu 
-          getQuestionsData={getQuestionsData}
-        />
-        :
-        <Quiz 
-          data={questionsData}
-        />
-      }
+      {startGame ? (
+        <Menu getQuestionsData={getQuestionsData} />
+      ) : (
+        <Quiz data={questionsData} />
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

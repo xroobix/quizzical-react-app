@@ -37,20 +37,45 @@ export default function Quiz(props) {
 
       shuffleArray(allAnswers);
 
-      return { question: piece.question, answers: allAnswers };
+      return {
+        id: nanoid(),
+        question: piece.question,
+        answers: allAnswers,
+      };
     });
 
     return requiredData;
   }
 
+  function selectAnswer(questionId, answerId) {
+    setData((oldData) =>
+      oldData.map((question) => {
+        const replaceQuestions = question.answers.map((answer) =>
+          answerId === answer.id
+            ? { ...answer, isSelected: true }
+            : { ...answer, isSelected: false }
+        );
+
+        return questionId === question.id
+          ? { ...question, answers: replaceQuestions }
+          : question;
+      })
+    );
+  }
+
   const questions = data.map((questionData) => (
-    <Question key={nanoid()} data={questionData} id={nanoid()} />
+    <Question
+      key={questionData.id}
+      data={questionData}
+      id={questionData.id}
+      selectAnswer={selectAnswer}
+    />
   ));
 
   return (
     <div className="quiz">
       {questions}
-      <button className='quiz--button'>Check answers</button>
+      <button className="quiz--button">Check answers</button>
     </div>
   );
 }
