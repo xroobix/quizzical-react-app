@@ -4,6 +4,8 @@ import Question from './Question';
 
 export default function Quiz(props) {
   const [data, setData] = useState(() => getData());
+  const [disableButton, setDisableButton] = useState(false);
+  const [countCorrectAnswers, setCountCorrectAnswers] = useState(0);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -32,9 +34,7 @@ export default function Quiz(props) {
       );
 
       const allAnswers = inCorrectAnswers;
-
       allAnswers.push(correctAnswer);
-
       shuffleArray(allAnswers);
 
       return {
@@ -63,6 +63,26 @@ export default function Quiz(props) {
     );
   }
 
+  function checkAnswers() {
+    const getCorrectAnswers = data.map((question) =>
+      question.answers.some(
+        (answer) => answer.isSelected && answer.isCorrect
+      )
+    );
+    const countAnswers = getCorrectAnswers.filter(value => value === true).length
+    setCountCorrectAnswers(count => countAnswers)
+  }
+
+  useEffect(() => {
+    const allQuestionsAnswered = data.map((question) =>
+      question.answers.some((answer) => answer.isSelected == true)
+    );
+    const unlockButton = allQuestionsAnswered.every(
+      (question) => question == true
+    );
+    setDisableButton((button) => unlockButton);
+  }, [data]);
+
   const questions = data.map((questionData) => (
     <Question
       key={questionData.id}
@@ -75,7 +95,16 @@ export default function Quiz(props) {
   return (
     <div className="quiz">
       {questions}
-      <button className="quiz--button">Check answers</button>
+      <div className="quiz--check">
+        <p>You scored {countCorrectAnswers}/5 correct answers</p>
+        <button
+          className="quiz--check--button"
+          disabled={!disableButton}
+          onClick={checkAnswers}
+        >
+          Check answers
+        </button>
+      </div>
     </div>
   );
 }
