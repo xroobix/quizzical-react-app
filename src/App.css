@@ -19,6 +19,24 @@ button {
     height: 100vh;
 }
 
+.shape-top {
+    width: 25vmin;
+    height: 25vmin;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.shape-bottom {
+    width: 25vmin;
+    height: 25vmin;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
 .menu {
     display: flex;
     flex-direction: column;
@@ -84,9 +102,11 @@ button {
 .question--title{
     margin-top: 0;
     margin-bottom: 10px;
+    font-size: 1.25em;
 }
 
 .question--button {
+    font-size: 1em;
     border: 1px solid #4D5B9E;
     border-radius: 10px;
     background: white;
@@ -119,4 +139,28 @@ button {
     border: none;
     background: #fa7b7b;
     padding: 5px 13px;
+}
+
+@media only screen and (max-width: 600px) {
+    .App {
+        height: 100%;
+    }
+
+    .quiz--check{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2em;
+        margin-top: 0.5em;
+        gap: 0;
+
+    }
+
+    .question--answers{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .shape-top, .shape-bottom {
+        display: none;
+    }
 }

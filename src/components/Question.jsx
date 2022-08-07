@@ -12,6 +12,8 @@ export default function Question({
         buttonClass = 'question--button button-correct';
       } else if (answer.isSelected) {
         buttonClass = 'question--button button-incorrect';
+      } else if (answer.isCorrect) {
+        buttonClass = 'question--button button-correct';
       } else {
         buttonClass = 'question--button';
       }
