@@ -146,6 +146,10 @@ button {
         height: 100%;
     }
 
+    .menu {
+        margin-top: 35vh;
+    }
+
     .quiz--check{
         display: flex;
         flex-direction: column;
