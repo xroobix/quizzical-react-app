@@ -1,15 +1,34 @@
 import { decode } from 'html-entities';
-export default function Question({ data, id, selectAnswer }) {
+export default function Question({
+  data,
+  id,
+  selectAnswer,
+  checked,
+}) {
   const buttons = data.answers.map((answer) => {
-    const style = answer.isSelected
-      ? 'question--button button-selected'
-      : 'question--button';
+    let buttonClass = '';
+    if (checked) {
+      if (answer.isCorrect && answer.isSelected) {
+        buttonClass = 'question--button button-correct';
+      } else if (answer.isSelected) {
+        buttonClass = 'question--button button-incorrect';
+      } else {
+        buttonClass = 'question--button';
+      }
+    } else {
+      if (answer.isSelected) {
+        buttonClass = 'question--button button-selected';
+      } else {
+        buttonClass = 'question--button';
+      }
+    }
 
     return (
       <button
-        className={style}
+        className={buttonClass}
         key={answer.id}
         onClick={() => selectAnswer(id, answer.id)}
+        disabled={checked}
       >
         {decode(answer.answer)}
       </button>

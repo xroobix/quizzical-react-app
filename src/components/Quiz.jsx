@@ -6,6 +6,8 @@ export default function Quiz(props) {
   const [data, setData] = useState(() => getData());
   const [disableButton, setDisableButton] = useState(false);
   const [countCorrectAnswers, setCountCorrectAnswers] = useState(0);
+  const [checked, setChecked] = useState(false);
+  const [endGame, setEndGame] = useState(false);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -21,7 +23,6 @@ export default function Quiz(props) {
         isCorrect: true,
         isSelected: false,
         id: nanoid(),
-        checked: false,
       };
       const inCorrectAnswers = piece.incorrect_answers.map(
         (answer) => ({
@@ -29,7 +30,6 @@ export default function Quiz(props) {
           isCorrect: false,
           isSelected: false,
           id: nanoid(),
-          checked: false,
         })
       );
 
@@ -69,8 +69,16 @@ export default function Quiz(props) {
         (answer) => answer.isSelected && answer.isCorrect
       )
     );
-    const countAnswers = getCorrectAnswers.filter(value => value === true).length
-    setCountCorrectAnswers(count => countAnswers)
+    const countAnswers = getCorrectAnswers.filter(
+      (value) => value === true
+    ).length;
+    setCountCorrectAnswers(countAnswers);
+    setChecked(true);
+    setEndGame(true);
+  }
+
+  function restartGame() {
+    props.restartGame();
   }
 
   useEffect(() => {
@@ -89,6 +97,7 @@ export default function Quiz(props) {
       data={questionData}
       id={questionData.id}
       selectAnswer={selectAnswer}
+      checked={checked}
     />
   ));
 
@@ -96,13 +105,15 @@ export default function Quiz(props) {
     <div className="quiz">
       {questions}
       <div className="quiz--check">
-        <p>You scored {countCorrectAnswers}/5 correct answers</p>
+        {endGame && (
+          <p>You scored {countCorrectAnswers}/5 correct answers</p>
+        )}
         <button
           className="quiz--check--button"
           disabled={!disableButton}
-          onClick={checkAnswers}
+          onClick={endGame ? restartGame : checkAnswers}
         >
-          Check answers
+          {endGame ? `Restart Game` : `Check answers`}
         </button>
       </div>
     </div>

@@ -5,19 +5,23 @@ import Quiz from './components/Quiz';
 
 function App() {
   const [questionsData, setQuestionsData] = useState([]);
-  const [startGame, setStartGame] = useState(true);
+  const [startGame, setStartGame] = useState(false);
 
   function getQuestionsData(data) {
     setQuestionsData(data);
+    setStartGame(true);
+  }
+
+  function restartGame() {
     setStartGame(false);
   }
 
   return (
     <div className="App">
-      {startGame ? (
+      {!startGame ? (
         <Menu getQuestionsData={getQuestionsData} />
       ) : (
-        <Quiz data={questionsData} />
+        <Quiz data={questionsData} restartGame={restartGame} />
       )}
     </div>
   );

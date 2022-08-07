@@ -19,7 +19,6 @@ button {
     height: 100vh;
 }
 
-
 .menu {
     display: flex;
     flex-direction: column;
@@ -96,8 +95,28 @@ button {
     margin-bottom: 1.25em;
 }
 
+.question--button:disabled {
+    cursor: not-allowed;
+}
+
 .button-selected {
     border: none;
     background: #D6DBF5;
+    padding: 5px 13px;
+}
+
+.button-correct {
+    border: none;
+    background: #94D7A2;
+    padding: 5px 13px;
+}
+
+.button-correct:disabled {
+    color: black;
+}
+
+.button-incorrect {
+    border: none;
+    background: #fa7b7b;
     padding: 5px 13px;
 }
