@@ -11,11 +11,12 @@ This project was created with ViteJS
 
 ### Links
 
-- Live Site Preview: [@Netlify]
+- Live Site Preview: [@Netlify](https://roob-quzzical-react-app.netlify.app)
 - Figma Design Link: [@Figma](https://www.figma.com/file/E9S5iPcm10f0RIHK8mCqKL/Quizzical-App)
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- React.JS
+- HTML
+- CSS
+- JS
+- React
